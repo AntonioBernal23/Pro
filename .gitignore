@@ -1,0 +1,13 @@
+# Ignorar carpetas generadas por NetBeans
+
+# Ignorar archivos compilados y distribuidos
+/build/
+/dist/
+
+# Ignorar archivos temporales y del sistema
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db

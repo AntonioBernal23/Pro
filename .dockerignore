@@ -1,0 +1,40 @@
+# Ignorar carpetas de NetBeans
+/build/
+/dist/
+/nbproject/private/
+/nbproject/build-impl.xml
+/nbproject/genfiles.properties
+/nbproject/project.properties
+/nbproject/project.xml
+
+# Archivos especificos del usuario
+*.orig
+*.rej
+
+# Ignorar archivos de sistema y temporales
+*.tmp
+*.swp
+*~
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de configuracion local
+/config/local.properties
+/config/dev.properties
+
+# Logs y reportes generados
+/logs/
+/reports/
+
+# Librerias
+/lib/
+/libs/
+
+# Ignorar archivos de Git
+.git
+.gitignore

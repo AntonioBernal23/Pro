@@ -1,0 +1,97 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2, #00C9FF);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 20px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, cursor 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1,1);
+    cursor: pointer;
+    color: greenyellow; 
+}
+
+.entrada {
+    border-radius: 10px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: transform 0.3s ease, cursor 0.3s ease;
+}
+
+.entrada:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    border: 2px solid greenyellow;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.submit {
+    border: 2px solid white;
+    border-radius: 10px;
+    height: 40px; /* Aumenta la altura para que el ícono sea visible */
+    background-color: transparent;
+    color: white;
+    display: flex; /* Alinea el contenido de forma horizontal */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    padding: 0 15px; /* Agrega un poco de espacio interno para que no esté pegado al borde */
+    transition: transform 0.3s ease, cursor 0.3s ease;
+}
+
+.submit i {
+    font-size: 20px; /* Ajusta el tamaño del ícono */
+    margin-right: 8px; /* Espacio entre el ícono y el texto, si lo hay */
+}
+
+.submit:hover {
+    transform: scale(1.05); /* Efecto de hover para agrandar el botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    border: 2px solid greenyellow;
+    color: greenyellow;
+}
+
+select {
+    border-radius: 10px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: transform 0.3s ease, cursor 0.3s ease;
+}
+
+option {
+    color: black;
+}
+
+select:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    border: 2px solid greenyellow;
+}
