@@ -30,7 +30,7 @@ public class UsuarioDAO {
         return mensaje;
     }
     
-    //Metodo para actualizar usuarii
+    //Metodo para actualizar usuario
     public boolean actualizarUsuario(Usuario usuario) throws SQLException {
         String query = "UPDATE usuarios SET nombre = ?, usuario = ?, correo = ?, contrasena = ?, rol = ? WHERE ID = ?;";
         PreparedStatement stmt = conexion.prepareStatement(query);
@@ -93,8 +93,6 @@ public class UsuarioDAO {
 
     //Busca si hay un registro en la base de datos con el usuario y contraseña mandados
     public Usuario iniciarSesion(String usuario, String contrasena) throws SQLException {
-        System.out.println("Usuario: " + usuario);
-        System.out.println("Contraseña" + contrasena);
         String query = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?;";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
             stmt.setString(1, usuario);
