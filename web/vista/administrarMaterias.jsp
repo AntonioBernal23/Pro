@@ -25,15 +25,16 @@
 
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.Usuario" %>
+<%@ page import="modelo.Materia" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="/vista/css/administrarUsuarios.css?v=1.0">
-        <script src="/vista/script/administrarUsuarios.js" defer></script>
+        <script src="/vista/script/administrarMaterias.js" defer></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <title>Administrar usuarios</title>
+        <title>Administrar Materias</title>
     </head>
     <body>
         <div class="grid-container">
@@ -42,39 +43,39 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Usuario</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th>Dia</th>
+                        <th>Hora</th>
                         <th></th>
                     </tr>
                     <%
-                        List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
-                        if (usuarios != null) {
-                            for (Usuario u : usuarios) {
+                        List<Materia> materias = (List<Materia>) request.getAttribute("materias");
+                        if (materias != null) {
+                            for (Materia m : materias) {
                     %>
                     <tr class="fila-usuario" 
-                        onclick="seleccionarFila(this, <%= u.getId()%>, '<%= u.getNombre()%>', '<%= u.getUsuario()%>', '<%= u.getCorreo()%>', '<%= u.getRol()%>')">
-                        <td><%= u.getId()%></td>
-                        <td><%= u.getNombre()%></td>
-                        <td><%= u.getUsuario()%></td>
-                        <td><%= u.getCorreo()%></td>
-                        <td><%= u.getRol()%></td>
+                        onclick="seleccionarFila(this, <%= m.getId()%>, '<%= m.getNombre()%>', '<%= m.getCodigo()%>', '<%= m.getDescripcion()%>', '<%= m.getDia()%>', '<%= m.getHora()%>')">
+                        <td><%= m.getId()%></td>
+                        <td><%= m.getNombre()%></td>
+                        <td><%= m.getCodigo()%></td>
+                        <td><%= m.getDescripcion()%></td>
+                        <td><%= m.getDia()%></td>
+                        <td><%= m.getHora()%></td>
                         <td>
-                            <%if (!ID.equals(u.getId())) {%>
-                            <form action="/EliminarUsuario" method="post">
-                                <input type="hidden" name="id" value="<%= u.getId()%>">
+                            <form action="/EliminarMateria" method="post">
+                                <input type="hidden" name="id" value="<%= m.getId()%>">
                                 <button type="submit" id="btnEliminar">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
-                            <%}%>
                         </td>
                     </tr>
                     <%
                         }
                     } else {
                     %>
-                    <tr><td colspan="6">No hay usuarios disponibles.</td></tr>
+                    <tr><td colspan="7">No hay materias disponibles.</td></tr>
                     <%
                         }
                     %>

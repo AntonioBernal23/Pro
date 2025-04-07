@@ -52,8 +52,7 @@ public class UsuarioDAO {
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            while (rs.next()) {
-                
+            while (rs.next()) {  
                 lista.add(new Usuario(
                         rs.getInt("ID"),
                         rs.getString("nombre"),

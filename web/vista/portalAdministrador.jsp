@@ -50,6 +50,12 @@
                 </button>
             </form>
 
+            <form action="/AdministrarMaterias" method="get">
+                <button type="submit" class="boton naranja">
+                    Administrar tareas
+                </button>                    
+            </form>
+            
             <form action="/CerrarSesion" method="post">
                 <button type="submit" class="boton salir">
                     <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
