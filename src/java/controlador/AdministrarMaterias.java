@@ -42,7 +42,7 @@ public class AdministrarMaterias extends HttpServlet {
             if(materias != null && !materias.isEmpty()) {
                 request.setAttribute("materias", materias);
             } else {
-                request.getSession().setAttribute("mensaje", "No se encontraron usuarios.");
+                request.getSession().setAttribute("mensaje", "No se encontraron materias.");
             }
             
             RequestDispatcher rd = request.getRequestDispatcher("/vista/administrarMaterias.jsp");
