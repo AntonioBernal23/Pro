@@ -1,0 +1,125 @@
+body {
+            font-family: 'Poppins', sans-serif, 'Segoe UI Emoji', 'Arial Unicode MS';
+            background-image: url('/vista/imagenes/fondo-imagen.jpeg');
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #ecf0f1;
+        }
+
+        .calendar-container {
+            display: flex;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            height: 90%;
+        }
+
+        .calendar {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .week-days {
+            display: grid;
+            grid-template-columns: 60px repeat(7, 1fr);
+            background: #34495e;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .week-days div {
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .calendar-table-container {
+            height: 75vh; /* Ajustado para mostrar todo el horario */
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #5c6f80 #2c3e50;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar-table th, .calendar-table td {
+            border: 1px solid #555;
+            padding: 10px;
+            text-align: center;
+            color: #ecf0f1;
+        }
+
+        .calendar-table th {
+            background: #5c6f80;
+        }
+
+        .calendar-table td {
+            height: 40px;
+        }
+
+        .calendar-table td:first-child {
+            background: #2c3e50;
+            font-weight: bold;
+            width: 60px;
+            font-size: 12px; /* Letra más pequeña solo en la columna de las horas */
+        }
+
+        .calendar-table td:hover {
+            background-color: #2c3e50;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-left: 20px;
+            background: linear-gradient(180deg, #001f3f, #003366);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            width: 250px;
+        }
+
+        .sidebar button {
+            background: #2980b9;
+            color: white;
+            border: none;
+            padding: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar button:hover {
+            background: #1f618d;
+            transform: scale(1.05);
+        }

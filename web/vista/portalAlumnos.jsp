@@ -31,20 +31,63 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css/portalAlumnos.css">
         <title>Portal de alumnos</title>
     </head>
     <body>
+        <div class="calendar-container">
+        <div class="calendar">
+            <div class="calendar-header">
+                <button class="btn">⬅️ Semana Anterior</button>
+                <h2>Semana del 18 - 24 de Marzo</h2>
+                <button class="btn">Semana Siguiente ➡️</button>
+            </div>
+            <div class="week-days">
+                <div>🕒</div>
+                <div>Lunes 18</div><div>Martes 19</div><div>Miércoles 20</div><div>Jueves 21</div>
+                <div>Viernes 22</div><div>Sábado 23</div><div>Domingo 24</div>
+            </div>
+            <div class="calendar-table-container">
+                <table class="calendar-table">
+                    <tbody id="calendar-body">
+                        <%
+                            for(int i = 0; i < 24; i++) {
+                                out.println("<tr>");
+                                out.println("<td>" + i + ":00</td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("<td></td>");
+                                out.println("</tr>");
+                                
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="sidebar">
+            <button>📝 Agregar Tarea</button>
+            <button>✏️ Modificar Tarea</button>
+            <button>📅 Agregar Evento</button>
+            <button>📖 Clases</button>
+            <button>➕ Agregar Clases</button>
+           <form action="/CerrarSesion" method="post">
+            <button type="submit">
+                🚪 
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </button>
+        </form>
+        </div>
+    </div>
 
         <h1>Bienvenido, <%= usuario.getNombre()%>!</h1>
 
         <p>Acceso al portal de estudiantes.</p>
 
         <p>ROL: <%=usuario.getRol()%></p>
-
-        <form action="/CerrarSesion" method="post">
-            <button type="submit">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </button>
-        </form>
     </body>   
 </html>
