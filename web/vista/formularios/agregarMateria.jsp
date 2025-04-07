@@ -23,13 +23,21 @@
             <input type="text" name="descripcion" placeholder="Descripcion..." class="entrada" required>
             <select name="dia" required>
                 <option value="">Selecciona el dia</option>
-                <option value="alumno">Lunes</option>
-                <option value="maestro">Martes</option>
-                <option value="alumno">Miercoles</option>
-                <option value="alumno">Jueves</option>
-                <option value="alumno">Viernes</option>
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes</option>
+                <option value="miercoles">Miercoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
             </select>
-            <input type="time" name="hora" required>
+            <select name="hora" required>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+            </select>
             <input type="submit" value="Registrar" class="submit">
         </form>
     </body>
