@@ -1,20 +1,19 @@
 <%@page import="modelo.Usuario"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
-
 <%
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
-        out.println("<script type='text/javascript'>");
-        out.println("alert('" + mensaje + "');");
-        out.println("</script>");
-        session.removeAttribute("mensaje"); // Se el artributo borra después de mostrarlo
-    }
 %>
-
+    <script type='text/javascript'>
+        alert('<%= mensaje %>');
+    </script>
 <%
-    Usuario usuario = (Usuario) session.getAttribute("usuario"); //Obtenemos el objeto Usuario desde la sesión
+        session.removeAttribute("mensaje");
+    }
+
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect("/index.jsp"); //Redirigimos a la página de login si no hay usuario
+        response.sendRedirect("/index.jsp");
         return;
     }
 
@@ -27,30 +26,36 @@
 %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <title>Portal de administador</title>
-    </head>
-    <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Administrador</title>
+    <link rel="stylesheet" href="/vista/css/portalAdministrador.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Bienvenido, <%= nombre %> 👋</h1>
+        <p class="rol">Rol: <%= rol %></p>
+    </div>
 
-        <h1>Bienvenido, <%= usuario.getNombre()%>!</h1>
+    <div class="contenido">
+        <h2>Panel de Administración</h2>
+        <p>Desde aquí puedes gestionar los usuarios y otras configuraciones del sistema.</p>
 
-        <p>Acceso al portal de administrador.</p>
-
-        <p>ROL: <%=usuario.getRol()%></p>
-
-        <div>
+        <div class="acciones">
             <form action="/AdministrarUsuarios" method="get">
-                <input type="submit" value="Administrar usuarios">
+                <button type="submit" class="boton naranja">
+                    <i class="fa-solid fa-users-gear"></i> Administrar usuarios
+                </button>
+            </form>
+
+            <form action="/CerrarSesion" method="post">
+                <button type="submit" class="boton salir">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </button>
             </form>
         </div>
-
-        <form action="/CerrarSesion" method="post">
-            <button type="submit">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </button>
-        </form>
-    </body>   
+    </div>
+</body>
 </html>

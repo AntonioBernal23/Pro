@@ -1,0 +1,131 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 7 abr. 2025, 10:44:48
+    Author     : Niami
+*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f7f8fa;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(90deg, #ff9900, #ff6600);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.rol {
+    font-weight: 500;
+    margin-top: 8px;
+    font-size: 16px;
+    color: #fffde7;
+}
+
+.contenido {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.acciones {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    justify-content: center;
+}
+
+.boton {
+    padding: 12px 20px;
+    background-color: #ff7b00;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #e66700;
+    transform: translateY(-2px);
+}
+
+.boton.salir {
+    background-color: #c0392b;
+    margin-top: 40px;
+}
+
+.boton.salir:hover {
+    background-color: #a93226;
+}
+
+.formulario {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.formulario h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #ff7b00;
+}
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    transition: border 0.2s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    outline: none;
+    border-color: #ff7b00;
+}
+
+.formulario textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

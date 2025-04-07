@@ -1,0 +1,84 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 7 abr. 2025, 10:41:41
+    Author     : Niami
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+}
+
+.header {
+    background: #eee;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+    margin: 0;
+    color: #ff7b00;
+}
+
+.rol {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.contenido {
+    padding: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contenido h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.acciones {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.boton {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.3s ease;
+}
+
+.boton i {
+    font-size: 18px;
+}
+
+.naranja {
+    background-color: #ff7b00;
+}
+
+.naranja:hover {
+    background-color: #e46c00;
+}
+
+.salir {
+    background-color: #cc0000;
+}
+
+.salir:hover {
+    background-color: #a10000;
+}

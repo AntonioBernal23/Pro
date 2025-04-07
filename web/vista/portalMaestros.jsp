@@ -1,21 +1,21 @@
 <%@page import="modelo.Usuario"%>
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
-        out.println("<script type='text/javascript'>");
-        out.println("alert('" + mensaje + "');");
-        out.println("</script>");
-        session.removeAttribute("mensaje"); // Se el artributo borra después de mostrarlo
-    }
 %>
-
+    <script type='text/javascript'>
+        alert('<%= mensaje %>');
+    </script>
 <%
-    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtén el objeto Usuario desde la sesión
+        session.removeAttribute("mensaje");
+    }
+
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect("/index.jsp"); // Redirigir a la página de login si no hay usuario
-        return; // Termina la ejecución del código JSP para evitar que se imprima contenido adicional
+        response.sendRedirect("/index.jsp");
+        return;
     }
 
     Integer ID = usuario.getId();
@@ -27,24 +27,74 @@
 %>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <title>Portal de maestros</title>
-    </head>
-    <body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Maestro</title>
+    <link rel="stylesheet" href="/vista/css/portalMaestros.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        function toggleForm(id) {
+            const form = document.getElementById(id);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>¡Hola, <%= nombre %>! 👨‍🏫</h1>
+        <p class="rol">Rol: <%= rol %></p>
+    </div>
 
-        <h1>Bienvenido, <%= usuario.getNombre()%>!</h1>
+    <div class="contenido">
+        <h2>Panel de Control</h2>
+        <p>Gestiona tus tareas y eventos desde aquí.</p>
 
-        <p>Acceso al portal de maestros.</p>
+        <div class="acciones">
+            <button class="boton naranja" onclick="toggleForm('formAgregarTarea')">
+                <i class="fa-solid fa-plus"></i> Agregar Tarea
+            </button>
+            <button class="boton naranja" onclick="toggleForm('formModificarTarea')">
+                <i class="fa-solid fa-pen-to-square"></i> Modificar Tarea
+            </button>
+            <button class="boton naranja" onclick="toggleForm('formAgregarEvento')">
+                <i class="fa-solid fa-calendar-plus"></i> Agregar Evento
+            </button>
+        </div>
 
-        <p>ROL: <%=usuario.getRol()%></p>
+        <!-- Formulario Agregar Tarea -->
+        <form id="formAgregarTarea" class="formulario" action="/AgregarTarea" method="post" style="display: none;">
+            <h3>Agregar Tarea</h3>
+            <input type="text" name="nombreTarea" placeholder="Nombre de la tarea" required>
+            <input type="date" name="fechaEntrega" required>
+            <textarea name="descripcion" placeholder="Descripción de la tarea" required></textarea>
+            <button type="submit" class="boton naranja">Guardar Tarea</button>
+        </form>
 
+        <!-- Formulario Modificar Tarea -->
+        <form id="formModificarTarea" class="formulario" action="/ModificarTarea" method="post" style="display: none;">
+            <h3>Modificar Tarea</h3>
+            <input type="text" name="nombreTarea" placeholder="Nuevo nombre de la tarea" required>
+            <input type="date" name="nuevaFechaEntrega" required>
+            <textarea name="nuevaDescripcion" placeholder="Nueva descripción" required></textarea>
+            <button type="submit" class="boton naranja">Modificar</button>
+        </form>
+
+        <!-- Formulario Agregar Evento -->
+        <form id="formAgregarEvento" class="formulario" action="/AgregarEvento" method="post" style="display: none;">
+            <h3>Agregar Evento</h3>
+            <input type="text" name="nombreEvento" placeholder="Nombre del evento" required>
+            <input type="date" name="fechaEvento" required>
+            <input type="text" name="duracion" placeholder="Duración (ej: 2h)" required>
+            <button type="submit" class="boton naranja">Guardar Evento</button>
+        </form>
+
+        <!-- Cerrar sesión -->
         <form action="/CerrarSesion" method="post">
-            <button type="submit">
-                <i class="fa-solid fa-right-from-bracket"></i>
+            <button type="submit" class="boton salir">
+                <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
             </button>
         </form>
-    </body>   
+    </div>
+</body>
 </html>
