@@ -17,11 +17,10 @@
     </head>
     <body>
         <form action="/RegistroMateria" method="post" class="container">
-            <h1>Agreagar administrador</h1>
+            <h1>Agregar Materia</h1>
             <input type="text" name="nombre" placeholder="Nombre..." class="entrada" required>
             <input type="text" name="codigo" placeholder="Codigo..." class="entrada" required>
             <input type="text" name="descripcion" placeholder="Descripcion..." class="entrada" required>
-            <input type="password" name="contrasena" placeholder="Contraseña..." class="entrada" required>
             <select name="dia" required>
                 <option value="">Selecciona el dia</option>
                 <option value="alumno">Lunes</option>
@@ -30,6 +29,7 @@
                 <option value="alumno">Jueves</option>
                 <option value="alumno">Viernes</option>
             </select>
+            <input type="time" name="hora" required>
             <input type="submit" value="Registrar" class="submit">
         </form>
     </body>
