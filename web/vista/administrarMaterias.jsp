@@ -82,7 +82,7 @@
                 </table>
             </div>
             <div class="botones-container">
-                <button id="btnAgregar" onclick="agregarUsuario()">
+                <button id="btnAgregar" onclick="agregarMateria()">
                     <i class="fas fa-plus"></i>
                 </button>
                 <button id="btnActualizar" style="display: none;" onclick="actualizarUsuario()">
