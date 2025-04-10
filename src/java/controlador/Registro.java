@@ -89,7 +89,7 @@ public class Registro extends HttpServlet {
                 }
                 response.sendRedirect(origen);
             }
-             response.getWriter().println("</script>");
+            response.getWriter().println("</script>");
         } catch (SQLException e) {
             session.setAttribute("mensaje", "Error en el registro: " + e.getMessage());
             response.sendRedirect(origen);

@@ -26,11 +26,13 @@ CREATE TABLE `materias` (
   `ID` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   `codigo` varchar(100) DEFAULT NULL,
+  `cupos` varchar(5) DEFAULT NULL,
   `descripcion` varchar(100) DEFAULT NULL,
   `dia` varchar(20) DEFAULT NULL,
-  `hora` time DEFAULT NULL,
+  `hora_comienzo` time DEFAULT NULL,
+  `hora_fin` time DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +41,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
+INSERT INTO `materias` VALUES (1,'Programacion','h23','20','java','lunes',NULL,NULL),(2,'Matematicas','g54','15','algebra','miercoles',NULL,'11:00:00'),(3,'Biologia','sasd2','12','xd','jueves',NULL,'00:00:12'),(4,'Biologia','sasd2','12','xd','jueves',NULL,'13:00:00');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -81,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-07 16:47:08
+-- Dump completed on 2025-04-10  4:16:55

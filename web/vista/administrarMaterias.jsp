@@ -44,9 +44,11 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Codigo</th>
+                        <th>Cupos</th>
                         <th>Descripcion</th>
                         <th>Dia</th>
-                        <th>Hora</th>
+                        <th>Hora comienzo</th>
+                        <th>Hora fin</th>
                         <th></th>
                     </tr>
                     <%
@@ -55,13 +57,15 @@
                             for (Materia m : materias) {
                     %>
                     <tr class="fila-usuario" 
-                        onclick="seleccionarFila(this, <%= m.getId()%>, '<%= m.getNombre()%>', '<%= m.getCodigo()%>', '<%= m.getDescripcion()%>', '<%= m.getDia()%>', '<%= m.getHora()%>')">
+                        onclick="seleccionarFila(this, <%= m.getId()%>, '<%= m.getNombre()%>', '<%= m.getCodigo()%>', '<%= m.getCupos()%>', '<%= m.getDescripcion()%>', '<%= m.getDia()%>', '<%= m.getHora_comienzo()%>', '<%= m.getHora_fin()%>')">
                         <td><%= m.getId()%></td>
                         <td><%= m.getNombre()%></td>
                         <td><%= m.getCodigo()%></td>
+                        <td><%= m.getCupos()%></td>
                         <td><%= m.getDescripcion()%></td>
                         <td><%= m.getDia()%></td>
-                        <td><%= m.getHora()%></td>
+                        <td><%= m.getHora_comienzo()%></td>
+                        <td><%= m.getHora_fin()%></td>
                         <td>
                             <form action="/EliminarMateria" method="post">
                                 <input type="hidden" name="id" value="<%= m.getId()%>">
@@ -75,7 +79,7 @@
                         }
                     } else {
                     %>
-                    <tr><td colspan="7">No hay materias disponibles.</td></tr>
+                    <tr><td colspan="9">No hay materias disponibles.</td></tr>
                     <%
                         }
                     %>
