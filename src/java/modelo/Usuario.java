@@ -26,6 +26,11 @@ public class Usuario {
         this.rol = rol;
     }
 
+    public Usuario(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }

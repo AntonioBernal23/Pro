@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
+
     private final Connection conexion;
 
     public UsuarioDAO(Connection conexion) {
@@ -15,12 +16,12 @@ public class UsuarioDAO {
     //Metodo para eliminar usuario
     public String eliminarUsuario(String id) throws SQLException {
         String query = "DELETE FROM usuarios WHERE ID = ?";
-        
+
         PreparedStatement stmt = conexion.prepareStatement(query);
         stmt.setString(1, id);
-        
+
         int ejecucion = stmt.executeUpdate();
-        
+
         String mensaje;
         if (ejecucion > 0) {
             mensaje = "Usuario eliminado correctamente.";
@@ -29,7 +30,7 @@ public class UsuarioDAO {
         }
         return mensaje;
     }
-    
+
     //Metodo para actualizar usuario
     public boolean actualizarUsuario(Usuario usuario) throws SQLException {
         String query = "UPDATE usuarios SET nombre = ?, usuario = ?, correo = ?, contrasena = ?, rol = ? WHERE ID = ?;";
@@ -42,7 +43,7 @@ public class UsuarioDAO {
         stmt.setInt(6, usuario.getId());
         return stmt.executeUpdate() > 0;
     }
-    
+
     //Metodo para sacar usuarios
     public List<Usuario> obtenerUsuarios() throws SQLException {
         String query = "SELECT * FROM usuarios;";
@@ -52,7 +53,7 @@ public class UsuarioDAO {
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
-            while (rs.next()) {  
+            while (rs.next()) {
                 lista.add(new Usuario(
                         rs.getInt("ID"),
                         rs.getString("nombre"),
@@ -60,6 +61,27 @@ public class UsuarioDAO {
                         rs.getString("correo"),
                         rs.getString("contrasena"),
                         rs.getString("rol")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+    // Metodo para obtener maestros
+    public List<Usuario> obtenerMaestros() throws SQLException {
+        String query = "SELECT * FROM usuarios WHERE rol = 'maestro';";
+
+        List<Usuario> lista = new ArrayList<>();
+        try {
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                lista.add(new Usuario(
+                        rs.getInt("ID"),
+                        rs.getString("nombre")
                 ));
             }
         } catch (SQLException e) {

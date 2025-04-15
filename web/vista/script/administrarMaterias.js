@@ -1,7 +1,7 @@
 let materiaSeleccionada = null;
 let filaSeleccionada = null;
 
-function seleccionarFila(fila, id, nombre, codigo, descripcion, dia, hora) {
+function seleccionarFila(fila, id, nombre, codigo, cupos, descripcion, dia, hora_comienzo, hora_fin, maestro) {
     // Quitar la selección de la fila anterior
     if (filaSeleccionada) {
         filaSeleccionada.classList.remove("seleccionada");
@@ -12,11 +12,18 @@ function seleccionarFila(fila, id, nombre, codigo, descripcion, dia, hora) {
     filaSeleccionada.classList.add("seleccionada");
 
     // Guardar los datos de la materia seleccionada
-    materiaSeleccionada = { id, nombre, codigo, descripcion, dia, hora };
+    materiaSeleccionada = { id, nombre, codigo, cupos, descripcion, dia, hora_comienzo, hora_fin, maestro };
 
     // Mostrar botones
+    document.getElementById("btnAsignar").style.display = "block";
     document.getElementById("btnActualizar").style.display = "block";
     document.getElementById("btnCancelar").style.display = "block";
+}
+
+function asignarMaestro() {
+    let url = "/AsignarMaestro?id=" + materiaSeleccionada.id;
+    
+    window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
 }
 
 function agregarMateria() {
@@ -43,6 +50,7 @@ function cancelarSeleccion() {
     // Ocultar botones
     document.getElementById("btnActualizar").style.display = "none";
     document.getElementById("btnCancelar").style.display = "none";
+    document.getElementById("btnAsignar").style.display = "none";
 
     // Remover la selección de la fila
     if (filaSeleccionada) {
