@@ -36,7 +36,7 @@
             </select>
             
             <label for="hora_comienzo">Hora comienzo:</label>
-            <select id="hora-comienzo" name="hora-comienzo" required>
+            <select id="hora_comienzo" name="hora_comienzo" required>
                 <option value="08:00">08:00</option>
                 <option value="09:00">09:00</option>
                 <option value="10:00">10:00</option>

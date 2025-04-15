@@ -21,7 +21,8 @@ function seleccionarFila(fila, id, nombre, codigo, cupos, descripcion, dia, hora
 }
 
 function asignarMaestro() {
-    let url = "/AsignarMaestro?id=" + materiaSeleccionada.id;
+    let url = "/AsignarMaestro?id=" + encodeURIComponent(materiaSeleccionada.id) + 
+          "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre);
     
     window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
 }

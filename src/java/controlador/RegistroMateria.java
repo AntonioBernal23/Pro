@@ -55,7 +55,7 @@ public class RegistroMateria extends HttpServlet {
 
             response.setContentType("text/html");
             response.getWriter().println("<script>");
-            
+
             if (mensaje.equals("Materia registrada correctamente.")) {
                 response.getWriter().println("window.opener.location.reload();");
                 response.getWriter().println("window.close();");
@@ -63,7 +63,7 @@ public class RegistroMateria extends HttpServlet {
                 response.getWriter().println("alert('Error: " + mensaje + "');");
                 response.getWriter().println("window.location.href='/vista/formularios/agregarMateria.jsp';");
             }
-            
+
             response.getWriter().println("</script>");
         } catch (SQLException e) {
             session.setAttribute("mensaje", "Error en el registro: " + e.getMessage());
@@ -71,8 +71,13 @@ public class RegistroMateria extends HttpServlet {
     }
 
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    public void destroy() {
+        try {
+            if (conexion != null) {
+                conexion.close();
+            }
+        } catch (SQLException e) {
+        }
+    }
 
 }

@@ -15,6 +15,10 @@
         out.println("</script>");
         session.removeAttribute("mensaje"); // Se el artributo borra después de mostrarlo
     }
+
+    String idMateria = (String) request.getAttribute("idMateria");
+
+    String nombreMateria = (String) request.getAttribute("nombreMateria");
 %>
 
 <%@ page import="java.util.List" %>
@@ -28,25 +32,28 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form>
+        <form action="/AsignarMaestro" method="post">
+            <p>Nombre de materia: <%= nombreMateria%></p>
+
             <label for="maestro">Maestro:</label>
-            <select id="maestro">
+            <select id="maestro" name="idMaestro">
                 <%
                     List<Usuario> maestros = (List<Usuario>) request.getAttribute("usuarios");
                     if (maestros != null) {
-                        for(Usuario m : maestros) {
+                        for (Usuario m : maestros) {
                 %>
-                <option><%= m.getNombre()%></option>
-                <%
-                        }
-                    } else {
-
-                %>
-                <!-- No hay maestros disponibles -->
+                <option value="<%= m.getId()%>"><%= m.getNombre()%></option>
                 <%
                     }
+                } else {
                 %>
+                <!-- No hay maestros disponibles -->
+                <%}%>
             </select>
+
+            <input type="hidden" value="<%= idMateria%>" name="idMateria">
+
+            <input type="submit" value="Asignar">
         </form>
     </body>
 </html>
