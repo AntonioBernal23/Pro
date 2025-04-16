@@ -15,6 +15,7 @@ function seleccionarFila(fila, id, nombre, codigo, cupos, descripcion, dia, hora
     materiaSeleccionada = { id, nombre, codigo, cupos, descripcion, dia, hora_comienzo, hora_fin, maestro };
 
     // Mostrar botones
+    document.getElementById("btnAgregar").style.display = "none";
     document.getElementById("btnAsignar").style.display = "block";
     document.getElementById("btnActualizar").style.display = "block";
     document.getElementById("btnCancelar").style.display = "block";
@@ -24,11 +25,15 @@ function asignarMaestro() {
     let url = "/AsignarMaestro?id=" + encodeURIComponent(materiaSeleccionada.id) + 
           "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre);
     
+    negarBotones();
+    
     window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
 }
 
 function agregarMateria() {
     let url = "/vista/formularios/agregarMateria.jsp";
+    
+    negarBotones();
     
     // Abre una nueva ventana con el formulario de agregar materia
     window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
@@ -43,12 +48,15 @@ function actualizarMateria() {
                 "&dia=" + encodeURIComponent(materiaSeleccionada.dia) +
                 "&hora=" + encodeURIComponent(materiaSeleccionada.hora);
 
+        negarBotones();
+
         window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
     }
 }
 
 function cancelarSeleccion() {
     // Ocultar botones
+    document.getElementById("btnAgregar").style.display = "block";
     document.getElementById("btnActualizar").style.display = "none";
     document.getElementById("btnCancelar").style.display = "none";
     document.getElementById("btnAsignar").style.display = "none";
@@ -61,4 +69,12 @@ function cancelarSeleccion() {
     // Resetear variables
     materiaSeleccionada = null;
     filaSeleccionada = null;
+}
+
+//Funcion para negar botones
+function negarBotones() {
+    document.getElementById("btnAgregar").style.display = "none";
+    document.getElementById("btnActualizar").style.display = "none";
+    document.getElementById("btnCancelar").style.display = "none";
+    document.getElementById("btnAsignar").style.display = "none";
 }

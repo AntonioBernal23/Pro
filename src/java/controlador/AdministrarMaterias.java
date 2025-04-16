@@ -19,15 +19,13 @@ import modelo.Materia;
 @WebServlet(name = "AdministrarMaterias", urlPatterns = {"/AdministrarMaterias"})
 public class AdministrarMaterias extends HttpServlet {
     
-    private java.sql.Connection conexion; // Creamos el objeto "conexion" de tipo Connection
+    private java.sql.Connection conexion;
 
     @Override
     public void init() throws ServletException {
         try {
-            // Creamos una instancia de conexion que es igual al metodo conectar() del modelo Conex
             conexion = Conex.conectar();
         } catch (SQLException ex) {
-            // Registra el error en los logs con nivel SEVERE si ocurre una excepción en la conexion
             Logger.getLogger(AdministrarUsuarios.class.getName()).log(Level.SEVERE, "Error al conectar a la base de datos", ex);
         }
     }

@@ -74,7 +74,7 @@ public class AsignarMaestro extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            String mensaje = dao.asignarMaestro(idMateria, idMaestro);
+            String mensaje = dao.asignarMaestroAMateria(idMateria, idMaestro);
 
             session.setAttribute("mensaje", mensaje);
 

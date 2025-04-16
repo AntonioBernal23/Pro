@@ -67,7 +67,17 @@
                         <td><%= m.getDia()%></td>
                         <td><%= m.getHora_comienzo()%></td>
                         <td><%= m.getHora_fin()%></td>
-                        <td></td>
+                        
+                        <!-- Mostrar nombre de maestro -->
+                        <%
+                            if (m.getMaestroAsignado() != null) {
+                        %>
+                        <td><%= m.getMaestroAsignado()%></td>
+                        <%} else {%>
+                        <td><p style="color: red;">Sin maestro</p></td>
+                        <%}%>
+                        
+                        <!-- Formulario para eliminar materia -->
                         <td>
                             <form action="/EliminarMateria" method="post">
                                 <input type="hidden" name="id" value="<%= m.getId()%>">

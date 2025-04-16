@@ -10,6 +10,7 @@ public class Materia {
     private String dia;
     private String hora_comienzo;
     private String hora_fin;
+    private String maestroAsignado;
 
     @Override
     protected void finalize() throws Throwable {
@@ -36,6 +37,18 @@ public class Materia {
         this.dia = dia;
         this.hora_comienzo = hora_comienzo;
         this.hora_fin = hora_fin;
+    }
+
+    public Materia(int id, String nombre, String codigo, String cupos, String descripcion, String dia, String hora_comienzo, String hora_fin, String maestroAsignado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.cupos = cupos;
+        this.descripcion = descripcion;
+        this.dia = dia;
+        this.hora_comienzo = hora_comienzo;
+        this.hora_fin = hora_fin;
+        this.maestroAsignado = maestroAsignado;
     }
 
     public int getId() {
@@ -100,6 +113,14 @@ public class Materia {
 
     public void setHora_fin(String hora_fin) {
         this.hora_fin = hora_fin;
+    }
+
+    public String getMaestroAsignado() {
+        return maestroAsignado;
+    }
+
+    public void setMaestroAsignado(String maestroAsignado) {
+        this.maestroAsignado = maestroAsignado;
     }
 
 }
