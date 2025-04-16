@@ -16,6 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `materia_usuario`
+--
+
+DROP TABLE IF EXISTS `materia_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `materia_usuario` (
+  `id_materia_usuario` int NOT NULL AUTO_INCREMENT,
+  `id_materia` int DEFAULT NULL,
+  `id_maestro` int DEFAULT NULL,
+  `id_alumno` int DEFAULT NULL,
+  PRIMARY KEY (`id_materia_usuario`),
+  UNIQUE KEY `unique_maestro_materia` (`id_materia`,`id_maestro`),
+  KEY `materia_usuario_ibfk_2` (`id_maestro`),
+  KEY `materia_usuario_ibfk_3` (`id_alumno`),
+  CONSTRAINT `materia_usuario_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `materia_usuario_ibfk_2` FOREIGN KEY (`id_maestro`) REFERENCES `usuarios` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `materia_usuario_ibfk_3` FOREIGN KEY (`id_alumno`) REFERENCES `usuarios` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materia_usuario`
+--
+
+LOCK TABLES `materia_usuario` WRITE;
+/*!40000 ALTER TABLE `materia_usuario` DISABLE KEYS */;
+INSERT INTO `materia_usuario` VALUES (1,1,8,NULL);
+/*!40000 ALTER TABLE `materia_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materias`
 --
 
@@ -32,7 +64,7 @@ CREATE TABLE `materias` (
   `hora_comienzo` time DEFAULT NULL,
   `hora_fin` time DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +73,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-INSERT INTO `materias` VALUES (1,'Programacion','h23','20','java','lunes',NULL,NULL),(2,'Matematicas','g54','15','algebra','miercoles',NULL,'11:00:00'),(3,'Biologia','sasd2','12','xd','jueves',NULL,'00:00:12'),(4,'Biologia','sasd2','12','xd','jueves',NULL,'13:00:00');
+INSERT INTO `materias` VALUES (1,'Algebra','h23','14','matematicas','miercoles','11:00:00','13:00:00');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +94,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `usuario` (`usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +103,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Tony','tony','tony@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(2,'Jesus','jesus','jesus@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','maestro'),(3,'Pedro','pedro','pedro@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','alumno'),(5,'Guadalupe','lupita','lupita@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(6,'sthefania','nia','nia@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(7,'daniel','daniel','daniel@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','alumno');
+INSERT INTO `usuarios` VALUES (1,'Tony','tony','tony@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(2,'Jesus','jesus','jesus@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','maestro'),(3,'Pedro','pedro','pedro@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','alumno'),(5,'Guadalupe','lupita','lupita@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(6,'sthefania','nia','nia@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','administrador'),(7,'daniel','daniel','daniel@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','alumno'),(8,'Frijol','frijol','frijol@gmail.com','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3','maestro');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -84,4 +116,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-10  4:16:55
+-- Dump completed on 2025-04-16  3:23:34
