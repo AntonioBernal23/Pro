@@ -52,7 +52,7 @@
 
             <form action="/AdministrarMaterias" method="get">
                 <button type="submit" class="boton naranja">
-                    Administrar tareas
+                    Administrar materias
                 </button>                    
             </form>
             

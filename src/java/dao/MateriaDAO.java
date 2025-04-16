@@ -36,22 +36,50 @@ public class MateriaDAO {
         return mensaje;
     }
 
-    //Metodo para asignar maestro
-    /*public String asignarMaestro(String idMateria, String idMaestro) throws SQLException {
-        String query = "INSERT INTO materia_usuario (id_materia, id_maestro) VALUES (?, ?);";
+    //Metodo para eliminar materia
+    public String eliminarMateria(String id) throws SQLException {
+        String query = "DELETE FROM materias WHERE ID = ?";
 
         PreparedStatement stmt = conexion.prepareStatement(query);
-        stmt.setString(1, idMateria);
-        stmt.setString(2, idMaestro);
+        stmt.setString(1, id);
 
-        String mensaje = null;
+        String mensaje;
         if (stmt.executeUpdate() > 0) {
-            mensaje = "Maestro asignado correctamente.";
+            mensaje = "Materia eliminada correctamente.";
+        } else {
+            mensaje = "Error al eliminar.";
+        }
+        return mensaje;
+    }
+
+    //Metodo para actualizar materia
+    public String actualizarMateria(Materia materia) {
+        String query = "UPDATE materias SET nombre = ?, codigo = ?, cupos = ?, descripcion = ?, dia = ?, hora_comienzo = ?, hora_fin = ? WHERE ID = ?;";
+        String mensaje;
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, materia.getNombre());
+            stmt.setString(2, materia.getCodigo());
+            stmt.setString(3, materia.getCupos()); // O setInt si es entero
+            stmt.setString(4, materia.getDescripcion());
+            stmt.setString(5, materia.getDia());
+            stmt.setString(6, materia.getHora_comienzo());
+            stmt.setString(7, materia.getHora_fin());
+            stmt.setInt(8, materia.getId());
+
+            if (stmt.executeUpdate() > 0) {
+                mensaje = "Materia actualizada correctamente.";
+            } else {
+                mensaje = "Error al actualizar materia: No se encontró la materia con ese ID.";
+            }
+        } catch (Exception e) {
+            // Incluye el tipo de error y el mensaje
+            mensaje = "Error al actualizar materia: " + e.getClass().getSimpleName() + " - " + e.getMessage();
         }
 
         return mensaje;
-    }*/
-    
+    }
+
     //Verificar si ya hay maestro asignado
     public String asignarMaestroAMateria(String idMateria, String idMaestro) throws SQLException {
         // Verificar si ya existe un maestro asignado para esa materia

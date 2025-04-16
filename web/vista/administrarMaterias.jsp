@@ -104,7 +104,7 @@
                 <button id="btnAsignar" style="display: none;" onclick="asignarMaestro()">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </button>
-                <button id="btnActualizar" style="display: none;" onclick="actualizarUsuario()">
+                <button id="btnActualizar" style="display: none;" onclick="actualizarMateria()">
                     <i class="fa-solid fa-pencil"></i>
                 </button>
                 <button id="btnCancelar" style="display:none;" onclick="cancelarSeleccion()">

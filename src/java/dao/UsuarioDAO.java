@@ -20,10 +20,8 @@ public class UsuarioDAO {
         PreparedStatement stmt = conexion.prepareStatement(query);
         stmt.setString(1, id);
 
-        int ejecucion = stmt.executeUpdate();
-
         String mensaje;
-        if (ejecucion > 0) {
+        if (stmt.executeUpdate() > 0) {
             mensaje = "Usuario eliminado correctamente.";
         } else {
             mensaje = "Error al eliminar.";

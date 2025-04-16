@@ -54,6 +54,7 @@ function confirmarEliminar() {
 
 function cancelarSeleccion() {
     // Ocultar botones
+    document.getElementById("btnAgregar").style.display = "block";
     document.getElementById("btnActualizar").style.display = "none";
     document.getElementById("btnCancelar").style.display = "none";
 
