@@ -1,4 +1,3 @@
-
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
