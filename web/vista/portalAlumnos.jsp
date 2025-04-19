@@ -1,3 +1,5 @@
+<%@page import="modelo.Materia"%>
+<%@page import="java.util.List"%>
 <%@page import="modelo.Usuario"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -7,15 +9,15 @@
         out.println("<script type='text/javascript'>");
         out.println("alert('" + mensaje + "');");
         out.println("</script>");
-        session.removeAttribute("mensaje"); // Se el artributo borra después de mostrarlo
+        session.removeAttribute("mensaje");
     }
 %>
 
 <%
-    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtén el objeto Usuario desde la sesión
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
-        response.sendRedirect("/index.jsp"); // Redirigir a la página de login si no hay usuario
-        return; // Termina la ejecución del código JSP para evitar que se imprima contenido adicional
+        response.sendRedirect("/index.jsp");
+        return;
     }
 
     Integer ID = usuario.getId();
@@ -26,13 +28,23 @@
     String rol = usuario.getRol();
 %>
 
+<%
+    List<Materia> materias = (List<Materia>) request.getAttribute("materias");
+
+    if (materias == null || materias.isEmpty()) {
+        out.println("<script type='text/javascript'>");
+        out.println("alert('No estás inscrito a ninguna materia.');");
+        out.println("</script>");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="/vista/script/portalAlumnos.js" defer></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css/portalAlumnos.css">
+        <link rel="stylesheet" href="/vista/css/portalAlumnos.css?v=1.0">
         <title>Portal de alumnos</title>
     </head>
     <body>
@@ -52,18 +64,32 @@
                     <table class="calendar-table">
                         <tbody id="calendar-body">
                             <%
+                                String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
                                 for (int i = 0; i < 24; i++) {
                                     out.println("<tr>");
-                                    out.println("<td>" + i + ":00</td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("<td></td>");
-                                    out.println("</tr>");
+                                    out.println("<td>" + String.format("%02d:00", i) + "</td>");
 
+                                    for (String dia : dias) {
+                                        boolean found = false;
+                                        if (materias != null) {
+                                            for (Materia m : materias) {
+                                                if (m.getDia().equalsIgnoreCase(dia)) {
+                                                    String[] partesHora = m.getHora_comienzo().split(":");
+                                                    int horaMateria = Integer.parseInt(partesHora[0]);
+
+                                                    if (horaMateria == i) {
+                                                        out.println("<td><a href=\"#\" onclick=\"mostrarPopup('" + m.getId()+ "', '" + m.getNombre() + "', '" + m.getMaestroAsignado() +"')\">" + m.getNombre() + "</a></td>");
+                                                        found = true;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (!found) {
+                                            out.println("<td></td>");
+                                        }
+                                    }
+                                    out.println("</tr>");
                                 }
                             %>
                         </tbody>
@@ -85,10 +111,14 @@
             </div>
         </div>
 
-        <h1>Bienvenido, <%= usuario.getNombre()%>!</h1>
-
-        <p>Acceso al portal de estudiantes.</p>
-
-        <p>ROL: <%=usuario.getRol()%></p>
+        <!-- POPUP -->
+        <div id="popup" class="popup-hidden">
+            <div class="popup-content">
+                <span class="popup-close" onclick="cerrarPopup()">✖</span>
+                <h2 id="popup-title">Nombre materia:</h2>
+                <p>ID: <span id="popup-id"></span></p>
+                <p>Maestro: <span id="popup-maestro"></span></p>
+            </div>
+        </div>
     </body>   
 </html>

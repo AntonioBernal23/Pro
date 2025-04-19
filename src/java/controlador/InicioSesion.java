@@ -72,7 +72,8 @@ public class InicioSesion extends HttpServlet {
                   donde lo va a redirigir*/
                 switch (usuarioAutenticado.getRol()) {
                     case "alumno" ->
-                        response.sendRedirect("vista/portalAlumnos.jsp");
+                        response.sendRedirect("/ObtenerHorario");
+                        //response.sendRedirect("vista/portalAlumnos.jsp");
                     case "maestro" ->
                         response.sendRedirect("vista/portalMaestros.jsp");
                     default ->

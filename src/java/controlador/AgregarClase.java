@@ -38,8 +38,6 @@ public class AgregarClase extends HttpServlet {
 
         try {
             List<Materia> materias = dao.obtenerMateriasConMaestro();
-
-            System.out.println("Materias obtenidas: " + materias.size());
             
             if (materias != null && !materias.isEmpty()) {
                 request.setAttribute("materias", materias);

@@ -36,6 +36,41 @@ public class MateriaDAO {
         return mensaje;
     }
 
+    //Metodo para obtener horario del alumno
+    public List<Materia> obtenerHorarioAlumno(int idAlumno) throws SQLException {
+        String query = "SELECT m.ID, m.nombre, m.codigo, m.cupos, m.descripcion, m.dia, m.hora_comienzo, m.hora_fin, " +
+                   "u.nombre AS nombre_maestro " +
+                   "FROM materia_usuario mu " +
+                   "JOIN materias m ON mu.id_materia = m.ID " +
+                   "LEFT JOIN usuarios u ON mu.id_maestro = u.ID " +
+                   "WHERE mu.id_alumno = ?";
+        
+        List<Materia> lista = new ArrayList<>();
+
+    try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+        stmt.setInt(1, idAlumno);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Materia materia = new Materia(
+                        rs.getInt("ID"),
+                        rs.getString("nombre"),
+                        rs.getString("codigo"),
+                        rs.getString("cupos"),
+                        rs.getString("descripcion"),
+                        rs.getString("dia"),
+                        rs.getString("hora_comienzo"),
+                        rs.getString("hora_fin")
+                );
+                materia.setMaestroAsignado(rs.getString("nombre_maestro"));
+                    lista.add(materia);
+                }
+            }
+        }
+
+        return lista;
+    }
+    
     //Metodo para eliminar materia
     public String eliminarMateria(String id) throws SQLException {
         String query = "DELETE FROM materias WHERE ID = ?";
