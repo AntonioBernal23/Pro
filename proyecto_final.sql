@@ -33,7 +33,7 @@ CREATE TABLE `materia_usuario` (
   KEY `materia_usuario_ibfk_1` (`id_materia`),
   CONSTRAINT `materia_usuario_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`ID`) ON DELETE CASCADE,
   CONSTRAINT `materia_usuario_ibfk_3` FOREIGN KEY (`id_alumno`) REFERENCES `usuarios` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `materia_usuario` (
 
 LOCK TABLES `materia_usuario` WRITE;
 /*!40000 ALTER TABLE `materia_usuario` DISABLE KEYS */;
-INSERT INTO `materia_usuario` VALUES (17,5,2,3);
+INSERT INTO `materia_usuario` VALUES (18,6,2,3),(20,8,2,3);
 /*!40000 ALTER TABLE `materia_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `materias` (
   `hora_comienzo` time DEFAULT NULL,
   `hora_fin` time DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `materias` (
 
 LOCK TABLES `materias` WRITE;
 /*!40000 ALTER TABLE `materias` DISABLE KEYS */;
-INSERT INTO `materias` VALUES (5,'Ecuaciones','H93','0','algebra','lunes','08:00:00','10:00:00');
+INSERT INTO `materias` VALUES (6,'Programacion','H23','19','Java','martes','08:00:00','10:00:00'),(8,'Ecuaciones','H93','9','algebra','lunes','10:00:00','12:00:00');
 /*!40000 ALTER TABLE `materias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-17  3:06:41
+-- Dump completed on 2025-04-19 22:58:52

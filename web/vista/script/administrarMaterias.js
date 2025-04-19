@@ -41,12 +41,15 @@ function agregarMateria() {
 
 function actualizarMateria() {
     if (materiaSeleccionada) {
-        let url = "/vista/formularios/actualizarMateria.jsp?id=" + materiaSeleccionada.id; /* +
-                "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre) +
-                "&codigo=" + encodeURIComponent(materiaSeleccionada.codigo) +
-                "&descripcion=" + encodeURIComponent(materiaSeleccionada.descripcion) +
-                "&dia=" + encodeURIComponent(materiaSeleccionada.dia) +
-                "&hora=" + encodeURIComponent(materiaSeleccionada.hora);*/
+        let url = "/vista/formularios/actualizarMateria.jsp" +
+            "?id=" + encodeURIComponent(materiaSeleccionada.id) +
+            "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre) +
+            "&codigo=" + encodeURIComponent(materiaSeleccionada.codigo) +
+            "&cupos=" + encodeURIComponent(materiaSeleccionada.cupos) +
+            "&descripcion=" + encodeURIComponent(materiaSeleccionada.descripcion) +
+            "&dia=" + encodeURIComponent(materiaSeleccionada.dia) +
+            "&hora_comienzo=" + encodeURIComponent(materiaSeleccionada.hora_comienzo) +
+            "&hora_fin=" + encodeURIComponent(materiaSeleccionada.hora_fin);
 
         negarBotones();
 

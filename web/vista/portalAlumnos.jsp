@@ -1,3 +1,4 @@
+<%@page import="java.util.Random"%>
 <%@page import="modelo.Materia"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Usuario"%>
@@ -65,30 +66,52 @@
                         <tbody id="calendar-body">
                             <%
                                 String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+
                                 for (int i = 0; i < 24; i++) {
                                     out.println("<tr>");
                                     out.println("<td>" + String.format("%02d:00", i) + "</td>");
 
                                     for (String dia : dias) {
                                         boolean found = false;
+
                                         if (materias != null) {
                                             for (Materia m : materias) {
                                                 if (m.getDia().equalsIgnoreCase(dia)) {
-                                                    String[] partesHora = m.getHora_comienzo().split(":");
-                                                    int horaMateria = Integer.parseInt(partesHora[0]);
+                                                    String[] inicio = m.getHora_comienzo().split(":");
+                                                    String[] fin = m.getHora_fin().split(":");
 
-                                                    if (horaMateria == i) {
-                                                        out.println("<td><a href=\"#\" onclick=\"mostrarPopup('" + m.getId()+ "', '" + m.getNombre() + "', '" + m.getMaestroAsignado() +"')\">" + m.getNombre() + "</a></td>");
+                                                    int horaInicio = Integer.parseInt(inicio[0]);
+                                                    int horaFin = Integer.parseInt(fin[0]);
+
+                                                    // Si estamos en la hora de inicio
+                                                    if (i == horaInicio) {
+                                                        int duracion = horaFin - horaInicio;
+
+                                                        // Color aleatorio
+                                                        Random rand = new Random();
+                                                        int r = rand.nextInt(156) + 100;
+                                                        int g = rand.nextInt(156) + 100;
+                                                        int b = rand.nextInt(156) + 100;
+                                                        String color = "rgb(" + r + "," + g + "," + b + ")";
+
+                                                        out.println("<td rowspan='" + duracion + "' style='background-color: " + color + "; cursor:pointer;' onclick=\"mostrarPopup('" + m.getNombre() + "', '" + m.getId() + "', '" + m.getMaestroAsignado() + "')\" class=\"materia-celda\">" + m.getNombre() + "</td>");
+                                                        found = true;
+                                                        break;
+                                                    }
+
+                                                    if (i > horaInicio && i < horaFin) {
                                                         found = true;
                                                         break;
                                                     }
                                                 }
                                             }
                                         }
+
                                         if (!found) {
                                             out.println("<td></td>");
                                         }
                                     }
+
                                     out.println("</tr>");
                                 }
                             %>
@@ -115,7 +138,7 @@
         <div id="popup" class="popup-hidden">
             <div class="popup-content">
                 <span class="popup-close" onclick="cerrarPopup()">✖</span>
-                <h2 id="popup-title">Nombre materia:</h2>
+                <h2 id="popup-title"></h2>
                 <p>ID: <span id="popup-id"></span></p>
                 <p>Maestro: <span id="popup-maestro"></span></p>
             </div>
