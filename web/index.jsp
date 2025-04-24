@@ -23,7 +23,7 @@
     </head>
     <body>
         <form action="InicioSesion" method="post" class="container">
-            <h1>Inicio de sesion</h1>
+            <h1>Hola Inicio de sesion</h1>
             <input type="text" name="usuario" placeholder="Usuario..." class="entrada" required>
             <input type="password" name="contrasena" placeholder="Contraseña..." class="entrada" required>
 

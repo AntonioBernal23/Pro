@@ -17,6 +17,8 @@ services:
       JPDA_ADDRESS: "*:5005"        # Dirección para la depuración
       JPDA_TRANSPORT: "dt_socket"   # Tipo de transporte para la depuración
     command: ["catalina.sh", "run", "-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"]  # Comando para iniciar Tomcat con depuración
+    volumes:
+      - ./dist/Proyecto_final.war:/usr/local/tomcat/webapps/ROOT.war  # Volumen que mapea el WAR desde tu máquina local
 
   mysql:
     image: mysql:8.0   # Usar la imagen oficial de MySQL 8.0
