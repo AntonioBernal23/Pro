@@ -3,38 +3,38 @@ version: '3.8'
 services:
   tomcat:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: .        # El contexto es la raíz del proyecto
+      dockerfile: Dockerfile   # El archivo Dockerfile que usarás para construir la imagen
     container_name: tomcat_app
     ports:
-      - "8080:8080"
-      - "5005:5005"
+      - "8080:8080"    # Mapea el puerto 8080 para acceder a la aplicación
+      - "5005:5005"    # Mapea el puerto 5005 para la depuración remota
     depends_on:
-      - mysql
+      - mysql          # Asegura que MySQL se inicie primero
     networks:
       - appnet
     environment:
-      JPDA_ADDRESS: "*:5005"
-      JPDA_TRANSPORT: "dt_socket"
-    command: ["catalina.sh", "run", "-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"]
+      JPDA_ADDRESS: "*:5005"        # Dirección para la depuración
+      JPDA_TRANSPORT: "dt_socket"   # Tipo de transporte para la depuración
+    command: ["catalina.sh", "run", "-agentlib:jdwp=transport=dt_socket,address=*:5005,server=y,suspend=n"]  # Comando para iniciar Tomcat con depuración
 
   mysql:
-    image: mysql:8.0
+    image: mysql:8.0   # Usar la imagen oficial de MySQL 8.0
     container_name: mysql_db
-    restart: always
+    restart: always     # Asegura que MySQL se reinicie si se cae
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: proyecto_final
+      MYSQL_ROOT_PASSWORD: rootpassword   # Contraseña de root para MySQL
+      MYSQL_DATABASE: proyecto_final     # Nombre de la base de datos
     ports:
-      - "3306:3306"
+      - "3306:3306"    # Mapea el puerto 3306 para acceder a MySQL
     volumes:
-      - mysql_data:/var/lib/mysql
-      - ./proyecto_final.sql:/docker-entrypoint-initdb.d/proyecto.sql
+      - mysql_data:/var/lib/mysql   # Volumen persistente para datos de MySQL
+      - ./proyecto_final.sql:/docker-entrypoint-initdb.d/proyecto_final.sql  # Cargar script SQL al inicializar la base de datos
     networks:
       - appnet
 
 networks:
-  appnet:
+  appnet:   # Red personalizada para los contenedores
 
 volumes:
-  mysql_data:
+  mysql_data:   # Volumen persistente de datos de MySQL
