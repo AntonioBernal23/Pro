@@ -10,19 +10,27 @@ public class Conex {
     private static final String PASS = "rootpassword";
 
     public static Connection conectar() throws SQLException {
-        try {
-            // Cargar el driver JDBC
-            Class.forName(DRIVER);
-            // Establecer la conexión
-            Connection conexion = DriverManager.getConnection(URL, USER, PASS);
-            if (conexion != null) {
-                System.out.println("Conexión exitosa a la base de datos.");
+        int intentos = 0;
+        while (intentos < 5) {
+            try {
+                Class.forName(DRIVER);
+                Connection conexion = DriverManager.getConnection(URL, USER, PASS);
+                if (conexion != null) {
+                    System.out.println("Conexión exitosa a la base de datos.");
+                }
+                return conexion;
+            } catch (SQLException e) {
+                intentos++;
+                System.out.println("Intento " + intentos + " fallido. Esperando para reintentar...");
+                try {
+                    Thread.sleep(5000); // Espera 5 segundos
+                } catch (InterruptedException ie) {
+                    Thread.currentThread().interrupt();
+                }
+            } catch (ClassNotFoundException e) {
+                throw new SQLException("Driver no encontrado", e);
             }
-            return conexion;
-        } catch (ClassNotFoundException e) {
-            throw new SQLException("El controlador JDBC no fue encontrado: " + DRIVER, e);
-        } catch (SQLException e) {
-            throw new SQLException("Error al conectar con la base de datos: " + URL, e);
         }
+        throw new SQLException("No se pudo conectar a la base de datos tras varios intentos");
     }
 }
