@@ -5,9 +5,9 @@ import java.sql.*;
 public class Conex {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://mysql:3306/proyecto_final";  // Cambia esto si es necesario
+    private static final String URL = "jdbc:mysql://localhost:3306/proyecto_final";  // Cambia esto si es necesario
     private static final String USER = "root";
-    private static final String PASS = "rootpassword";
+    private static final String PASS = "1234";
 
     public static Connection conectar() throws SQLException {
         int intentos = 0;
