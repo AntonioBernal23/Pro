@@ -1,76 +1,75 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="modelo.Materia" %>
+<%@ page import="java.util.List" %>
 <%
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
-        out.println("<script type='text/javascript'>");
-        out.println("alert('" + mensaje + "');");
-        out.println("</script>");
-        session.removeAttribute("mensaje");
-    }
-
-    String idAlumno = (String) request.getAttribute("idAlumno");
-    List<Materia> materias = (List<Materia>) request.getAttribute("materias");
 %>
-
-<%@ page import="modelo.Materia" %>
-<%@ page import="java.util.List" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script type="text/javascript">
+    alert('<%= mensaje %>');
+</script>
+<%
+    session.removeAttribute("mensaje");
+}
+String idAlumno = request.getParameter("id");
+List<Materia> materias = (List<Materia>) request.getAttribute("materias");
+String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="/vista/script/agregarClase.js" defer></script>
-        <title>Agregar clase</title>
-
-        <script>
-            const materiasData = [
-            <%
-                if (materias != null) {
-                    for (int i = 0; i < materias.size(); i++) {
-                        Materia m = materias.get(i);
-            %>
-            {
-            id: "<%= m.getId()%>",
-                    nombre: "<%= m.getNombre()%>",
-                    codigo: "<%= m.getCodigo()%>",
-                    cupos: "<%= m.getCupos()%>",
-                    descripcion: "<%= m.getDescripcion()%>",
-                    dia: "<%= m.getDia()%>",
-                    horaInicio: "<%= m.getHora_comienzo()%>",
-                    horaFin: "<%= m.getHora_fin()%>"
-            }<%= (i < materias.size() - 1) ? "," : ""%>
-            <%
-                    }
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Clase</title>
+    <link rel="stylesheet" href="<%= contextPath %>/vista/estilos/AgregarClase.css?v=2.0">
+    <script>
+        const materiasData = [
+        <%
+            if (materias != null) {
+                for (int i = 0; i < materias.size(); i++) {
+                    Materia m = materias.get(i);
+        %>
+        {
+            id: "<%= m.getId() %>",
+            nombre: "<%= m.getNombre() %>",
+            codigo: "<%= m.getCodigo() %>",
+            cupos: "<%= m.getCupos() %>",
+            descripcion: "<%= m.getDescripcion() %>",
+            dia: "<%= m.getDia() %>",
+            horaInicio: "<%= m.getHora_comienzo() %>",
+            horaFin: "<%= m.getHora_fin() %>"
+        }<%= (i < materias.size() - 1) ? "," : "" %>
+        <%
                 }
-            %>
-            ];
-        </script>
-
-    </head>
-    <body>
-        <form action="/AgregarClase" method="post">
-            <input type="hidden" name="idAlumno" value="<%= idAlumno%>">
-
+            }
+        %>
+        ];
+    </script>
+    <script src="<%= contextPath %>/vista/script/agregarClase.js" defer></script>
+</head>
+<body>
+    <div class="agregar-clase-container">
+        <form action="<%= contextPath %>/AgregarClase" method="post" class="agregar-clase-form">
+            <h1 class="titulo">Agregar Clase</h1>
+            <input type="hidden" name="idAlumno" value="<%= idAlumno %>">
             <input type="hidden" id="materiaIdHidden" name="idMateria">
-            
-            <input list="materias" id="materiaInput" name="materiaInput" placeholder="Escribe o selecciona una materia">
+
+            <label for="materiaInput">Materia</label>
+            <input list="materias" id="materiaInput" name="materiaInput" placeholder="Escribe o selecciona una materia" required>
             <datalist id="materias">
                 <%
                     if (materias != null) {
                         for (Materia m : materias) {
                 %>
-                <option data-id="<%= m.getId()%>" value="<%= m.getNombre()%>"></option>
+                <option data-id="<%= m.getId() %>" value="<%= m.getNombre() %>"></option>
                 <%
                         }
                     }
                 %>
             </datalist>
 
-
-            <div id="materiaInfo" style="margin-top: 10px; display:none;">
-                <h3>Información de la materia:</h3>
-                <p id="materiaId"></p>
-                <p id="materiaNombre"></p>
-                <table border="1">
+            <div id="materiaInfo" style="display: none;">
+                <h3>Información de la materia</h3>
+                <table>
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -78,7 +77,7 @@
                             <th>Cupos</th>
                             <th>Descripción</th>
                             <th>Día</th>
-                            <th>Hora de comienzo</th>
+                            <th>Hora de inicio</th>
                             <th>Hora de fin</th>
                         </tr>
                     </thead>
@@ -94,10 +93,10 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
 
-            <input type="submit" value="Agregar">
+            <button type="submit">Agregar</button>
         </form>
-    </body>
+    </div>
+</body>
 </html>

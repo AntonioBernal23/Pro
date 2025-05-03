@@ -1,5 +1,5 @@
 /* ======== ESTILO GENERAL ======== */
-body {
+body { 
     font-family: 'Poppins', sans-serif, 'Segoe UI Emoji', 'Arial Unicode MS';
     background-image: url('/vista/imagenes/fondo-imagen.jpeg');
     background-size: cover;
@@ -20,8 +20,8 @@ body {
     border-radius: 15px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
     width: 90%;
-    max-height: calc(100vh - 60px); /* más espacio de respiro */
-    margin-bottom: 20px; /* para evitar que quede pegado al fondo */
+    max-height: calc(100vh - 60px); 
+    margin-bottom: 20px; 
     overflow: auto;
 }
 
@@ -34,7 +34,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #2c3e50;
+   background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -45,7 +45,7 @@ body {
 .week-days {
     display: grid;
     grid-template-columns: 60px repeat(7, 1fr);
-    background: #34495e;
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
     padding: 10px;
     font-weight: bold;
     border-radius: 10px;
@@ -88,12 +88,15 @@ body {
     width: 100px;
 }
 
-.calendar-table td:first-child {
-    background: #2c3e50;
+
+ .calendar-table td:first-child {
+    background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
     font-weight: bold;
     width: 60px;
     font-size: 12px;
+    border-radius: 50px; /* ← Añadido para que se vean redondeados */
 }
+
 
 .calendar-table td:hover {
     background-color: #2c3e50;
@@ -105,7 +108,7 @@ body {
     flex-direction: column;
     gap: 12px;
     margin-left: 20px;
-    background: linear-gradient(180deg, #001f3f, #003366);
+  background-image: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
@@ -113,30 +116,50 @@ body {
 }
 
 .sidebar button {
-    background: #2980b9;
-    color: white;
-    border: none;
+    color: #fff;
+    position: relative;
+    border-radius: 40px;
     padding: 14px;
+    border: none;
     cursor: pointer;
-    border-radius: 8px;
+    overflow: hidden;
+    background-color: transparent;
+    z-index: 1;
     font-size: 16px;
     font-weight: bold;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 0 0 rgba(145, 64, 248, 0.5), 0 0 0 0 rgba(39, 200, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sidebar button::after {
+    content: "";
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+    z-index: -1;
+    transition: transform 0.5s ease;
+    border-radius: 50%;
 }
 
 .sidebar button:hover {
-    background: #1f618d;
-    transform: scale(1.05);
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0 rgba(16, 226, 253, 0.5),
+                -10px 10px 25px 0 rgba(183, 0, 255, 0.7);
+}
+
+.sidebar button:hover::after {
+    transform: rotate(150deg);
 }
 
 /* ======== POPUP ======== */
-
-/* Oculta el popup por defecto */
 #popup {
-    display: flex; /* sí, FLEX para que el centrado funcione */
+    display: flex; 
     position: fixed;
     justify-content: center;
     align-items: center;
@@ -150,7 +173,6 @@ body {
     display: none !important;
 }
 
-/* Caja blanca del contenido */
 .popup-content {
     background-color: white;
     color: black;
@@ -163,7 +185,6 @@ body {
     text-align: center;
 }
 
-/* Botón de cerrar */
 .popup-close {
     position: absolute;
     top: 10px;

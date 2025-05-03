@@ -83,11 +83,9 @@
                                                     int horaInicio = Integer.parseInt(inicio[0]);
                                                     int horaFin = Integer.parseInt(fin[0]);
 
-                                                    // Si estamos en la hora de inicio
                                                     if (i == horaInicio) {
                                                         int duracion = horaFin - horaInicio;
 
-                                                        // Color aleatorio
                                                         Random rand = new Random();
                                                         int r = rand.nextInt(156) + 100;
                                                         int g = rand.nextInt(156) + 100;
@@ -124,11 +122,10 @@
                 <button>✏️ Modificar Tarea</button>
                 <button>📅 Agregar Evento</button>
                 <button>📖 Clases</button>
-                <button id="btnAgregarClase" onclick="agregarClase(<%= usuario.getId()%>)">➕ Agregar Clases</button>
+                <button id="btnAgregarClase" onclick="agregarClase(<%= usuario.getId() %>)">➕ Agregar Clases</button>
                 <form action="/CerrarSesion" method="post">
                     <button type="submit">
-                        🚪 
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        🚪 <i class="fa-solid fa-right-from-bracket"></i>
                     </button>
                 </form>
             </div>

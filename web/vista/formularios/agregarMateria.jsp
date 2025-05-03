@@ -1,62 +1,104 @@
+<%@page import="modelo.Usuario"%>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%
+    // Mensaje de sesión
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
-        out.println("<script type='text/javascript'>");
-        out.println("alert('" + mensaje + "');");
-        out.println("</script>");
-        session.removeAttribute("mensaje"); // Se el artributo borra después de mostrarlo
+%>
+    <script>alert('<%= mensaje %>');</script>
+<%
+        session.removeAttribute("mensaje");
     }
+
+    // Validación de sesión
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    if (usuario == null) {
+        response.sendRedirect("/index.jsp");
+        return;
+    }
+
+    String nombre = usuario.getNombre();
+    String rol = usuario.getRol();
 %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Materia</title>
-    </head>
-    <body>
-        <form action="/RegistroMateria" method="post" class="container">
-            <h1>Agregar Materia</h1>
-            <input type="text" name="nombre" placeholder="Nombre..." class="entrada" required>
-            
-            <input type="text" name="codigo" placeholder="Codigo..." class="entrada" required>
-            
-            <input type="number" name="cupos" min="1" max="20" placeholder="Cupos..." required="">
-            
-            <input type="text" name="descripcion" placeholder="Descripcion..." class="entrada" required>
-            
-            <select name="dia" required>
-                <option value="">Selecciona el dia</option>
-                <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
-                <option value="miercoles">Miercoles</option>
-                <option value="jueves">Jueves</option>
-                <option value="viernes">Viernes</option>
-            </select>
-            
-            <label for="hora_comienzo">Hora comienzo:</label>
-            <select id="hora_comienzo" name="hora_comienzo" required>
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-            </select>
-            
-            <label for="hora_fin">Hora fin:</label>
-            <select id="hora_fin" name="hora_fin" required>
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-            </select>
-            <input type="submit" value="Registrar" class="submit">
-        </form>
-    </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Materia</title>
+    <!-- Estilos base del portal -->
+    <link rel="stylesheet" href="/vista/css/portalAlumnos.css?v=1.0">
+    <!-- Estilos específicos para el formulario de materia -->
+    <link rel="stylesheet" href="/vista/css/AgregarMatera.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <!-- Área principal -->
+        <div class="calendar">
+            <div class="calendar-header">
+                <h2><i class="fa-solid fa-book-medical"></i> Agregar Materia</h2>
+                <p class="subtitulo">Completa los datos para registrar una nueva materia</p>
+            </div>
+            <div class="calendar-table-container">
+                <div class="form-card">
+                    <form action="/RegistroMateria" method="post" class="form">
+                        <div class="field-group">
+                            <label>Nombre de la materia</label>
+                            <input type="text" name="nombre" placeholder="Ej. Matemáticas" required>
+                        </div>
+                        <div class="field-group">
+                            <label>Código</label>
+                            <input type="text" name="codigo" placeholder="Ej. MAT101" required>
+                        </div>
+                        <div class="field-group">
+                            <label>Cupos</label>
+                            <input type="number" name="cupos" min="1" max="20" placeholder="Máx. 20" required>
+                        </div>
+                        <div class="field-group">
+                            <label>Descripción</label>
+                            <textarea name="descripcion" placeholder="Detalle breve..." required></textarea>
+                        </div>
+                        <div class="field-group">
+                            <label>Día</label>
+                            <select name="dia" required>
+                                <option value="">Selecciona...</option>
+                                <option>lunes</option><option>martes</option>
+                                <option>miércoles</option><option>jueves</option>
+                                <option>viernes</option>
+                            </select>
+                        </div>
+                        <div class="field-row">
+                            <div class="field-group">
+                                <label>Hora de inicio</label>
+                                <input type="time" name="hora_comienzo" required>
+                            </div>
+                            <div class="field-group">
+                                <label>Hora de fin</label>
+                                <input type="time" name="hora_fin" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn submit-btn">
+                            <i class="fa-solid fa-check"></i> Registrar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <form action="/AdministrarMaterias" method="get">
+                <button type="submit" class="btn action">
+                    <i class="fa-solid fa-arrow-left"></i> Volver
+                </button>
+            </form>
+            <form action="/CerrarSesion" method="post" class="logout-form">
+                <button type="submit" class="btn logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

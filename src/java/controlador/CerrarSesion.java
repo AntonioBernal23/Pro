@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 @WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
 public class CerrarSesion extends HttpServlet {
     
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

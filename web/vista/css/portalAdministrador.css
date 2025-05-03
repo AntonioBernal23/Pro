@@ -1,84 +1,120 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 7 abr. 2025, 10:41:41
-    Author     : Niami
-*/
+:root {
+  --primary: #ff7b00;
+  --danger: #cc0000;
+  --hover-primary: #e46c00;
+  --hover-danger: #a10000;
+  --gradient-header: linear-gradient(-20deg, #2b5876, #4e4376);
+  --font-main: 'Segoe UI', 'Poppins', sans-serif;
+  --bg-light: #f0f4f8;
+  --text-color: #333;
+}
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f9f9f9;
-    color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-image: url('/vista/imagenes/fondo-imagen.jpeg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-.header {
-    background: #eee;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+.admin-container {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+  max-width: 800px;
+  width: 90%;
 }
 
-.header h1 {
-    margin: 0;
-    color: #ff7b00;
+.admin-header {
+  background-image: var(--gradient-header);
+  padding: 30px 20px;
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 2rem;
 }
 
 .rol {
-    margin-top: 5px;
-    font-weight: bold;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #ddd;
 }
 
-.contenido {
-    padding: 30px;
-    max-width: 700px;
-    margin: 0 auto;
+.admin-content {
+  text-align: center;
 }
 
-.contenido h2 {
-    margin-top: 0;
-    color: #333;
+.admin-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
 }
 
-.acciones {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.admin-content p {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 25px;
 }
 
-.boton {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.3s ease;
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* centra los botones */
 }
 
-.boton i {
-    font-size: 18px;
+.btn {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+  display: flex;
+  justify-content: center;  /* centra el contenido del botón */
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 320px;
 }
 
-.naranja {
-    background-color: #ff7b00;
+.btn i {
+  font-size: 1.2rem;
 }
 
-.naranja:hover {
-    background-color: #e46c00;
+.btn.primary {
+  background-color: var(--primary);
 }
 
-.salir {
-    background-color: #cc0000;
+.btn.primary:hover {
+  background-color: var(--hover-primary);
+  transform: translateY(-2px);
 }
 
-.salir:hover {
-    background-color: #a10000;
+.btn.danger {
+  background-color: var(--danger);
+}
+
+.btn.danger:hover {
+  background-color: var(--hover-danger);
+  transform: translateY(-2px);
 }
