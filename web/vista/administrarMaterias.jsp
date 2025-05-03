@@ -24,7 +24,6 @@
   <meta charset="UTF-8">
   <title>Administrar Materias</title>
   <link rel="stylesheet" href="/vista/css/portalAlumnos.css?v=1.0">
-  <link rel="stylesheet" href="/vista/css/AdministrarMaterias.css?v=1.0">
   <script src="/vista/script/administrarMaterias.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>

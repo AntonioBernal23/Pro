@@ -13,24 +13,37 @@
     }
 %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sesion</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="/vista/css/index.css">
-    </head>
-    <body>
-        <form action="InicioSesion" method="post" class="container">
-            <h1>Inicio de sesion</h1>
-            <input type="text" name="usuario" placeholder="Usuario..." class="entrada" required>
-            <input type="password" name="contrasena" placeholder="Contraseña..." class="entrada" required>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/vista/css/registro.css?v=2.0"> <!-- Reutilizar estilo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="registro-container">
+        <form action="InicioSesion" method="post" class="registro-form">
+            <h1 class="registro-titulo">Iniciar Sesión</h1>
 
-            <button type="submit" class="submit">
-                <i class="fa-solid fa-right-to-bracket"></i>
+            <div class="input-group">
+                <i class="fa fa-user"></i>
+                <input type="text" name="usuario" placeholder="Nombre de usuario" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa fa-lock"></i>
+                <input type="password" name="contrasena" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-registro">
+                <i class="fa-solid fa-right-to-bracket"></i> Ingresar
             </button>
-            <p>¿No tienes cuenta?. <a href="vista/registro.jsp?from=index">Crea una aqui.</a></p>
+
+            <p style="text-align: center; margin-top: 15px;">
+                ¿No tienes cuenta? <a href="vista/registro.jsp?from=index" style="color: #1abc9c;">Crea una aquí.</a>
+            </p>
         </form>
-    </body>
+    </div>
+</body>
 </html>

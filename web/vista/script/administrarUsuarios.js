@@ -26,7 +26,6 @@ function seleccionarFila(fila, id, nombre, usuario, correo, rol) {
     // Mostrar botones
     document.getElementById("btnAgregar").style.display = "none";
     document.getElementById("btnActualizar").style.display = "block";
-    document.getElementById("btnEliminar").style.display = "block";
     document.getElementById("btnCancelar").style.display = "block";
 }
 
@@ -72,6 +71,5 @@ function cancelarSeleccion() {
 function negarBotones() {
     document.getElementById("btnAgregar").style.display = "none";
     document.getElementById("btnActualizar").style.display = "none";
-    document.getElementById("btnEliminar").style.display = "none";
     document.getElementById("btnCancelar").style.display = "none";
 }
