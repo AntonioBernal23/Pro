@@ -2,7 +2,7 @@ let usuarioSeleccionado = null;
 let filaSeleccionada = null;
 
 function agregarUsuario() {
-    let url = "/vista/formularios/agregarUsuario.jsp";
+    let url = "/vista/formularios/agregarUsuario.jsp?roleAdmin=" + roleAdmin;
 
     negarBotones();
 
@@ -35,7 +35,8 @@ function actualizarUsuario() {
                 "&nombre=" + encodeURIComponent(usuarioSeleccionado.nombre) +
                 "&usuario=" + encodeURIComponent(usuarioSeleccionado.usuario) +
                 "&correo=" + encodeURIComponent(usuarioSeleccionado.correo) +
-                "&rol=" + encodeURIComponent(usuarioSeleccionado.rol);
+                "&rol=" + encodeURIComponent(usuarioSeleccionado.rol) +
+                "&roleAdmin=" + encodeURIComponent(roleAdmin);
 
         negarBotones();
 

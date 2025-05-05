@@ -1,18 +1,22 @@
 <%@page import="modelo.Usuario"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%
-    // Mensaje de sesión
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
 %>
-<script>alert('<%= mensaje%>');</script>
+
+<script>
+    alert('<%= mensaje%>');
+</script>
+
 <%
         session.removeAttribute("mensaje");
     }
+    String roleAdmin = request.getParameter("roleAdmin");
 
-    // Validación de sesión
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario == null) {
+    if (usuario == null || !roleAdmin.equals("administrador")) {
         response.sendRedirect("/index.jsp");
         return;
     }
@@ -26,10 +30,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Agregar Materia</title>
-        <!-- Estilos base del portal -->
-        <link rel="stylesheet" href="/vista/css/portalAlumnos.css?v=1.0">
-        <!-- Estilos específicos para el formulario de materia -->
-        <link rel="stylesheet" href="/vista/css/AgregarMatera.css?v=1.0">
+        <link rel="stylesheet" href="/vista/css/formularios.css?v=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </head>
     <body>
@@ -105,20 +106,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <form action="/AdministrarMaterias" method="get">
-                    <button type="submit" class="btn action">
-                        <i class="fa-solid fa-arrow-left"></i> Volver
-                    </button>
-                </form>
-                <form action="/CerrarSesion" method="post" class="logout-form">
-                    <button type="submit" class="btn logout">
-                        <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
-                    </button>
-                </form>
             </div>
         </div>
     </body>

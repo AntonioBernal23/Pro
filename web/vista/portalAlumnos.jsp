@@ -118,9 +118,6 @@
                 </div>
             </div>
             <div class="sidebar">
-                <button>📝 Agregar Tarea</button>
-                <button>✏️ Modificar Tarea</button>
-                <button>📅 Agregar Evento</button>
                 <button>📖 Clases</button>
                 <button id="btnAgregarClase" onclick="agregarClase(<%= usuario.getId() %>)">➕ Agregar Clases</button>
                 <form action="/CerrarSesion" method="post">

@@ -3,24 +3,33 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%
-    // Mostrar mensaje de sesión si existe
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
 %>
+
 <script>alert('<%= mensaje%>');</script>
+
 <%
         session.removeAttribute("mensaje");
     }
 
-    // Validar sesión
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     if (usuario == null) {
         response.sendRedirect("/index.jsp");
         return;
     }
 
+    if (!usuario.getRol().equals("administrador")) {
+        session.removeAttribute("usuarii");
+        response.sendRedirect("/index.jsp");
+    }
+
     List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
 %>
+
+<script>
+    let roleAdmin = "<%= usuario.getRol() %>";
+</script>
 
 <!DOCTYPE html>
 <html>

@@ -23,7 +23,8 @@ function seleccionarFila(fila, id, nombre, codigo, cupos, descripcion, dia, hora
 
 function asignarMaestro() {
     let url = "/AsignarMaestro?id=" + encodeURIComponent(materiaSeleccionada.id) + 
-          "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre);
+          "&nombre=" + encodeURIComponent(materiaSeleccionada.nombre) +
+          "&roleAdmin=" + encodeURIComponent(roleAdmin);
     
     negarBotones();
     
@@ -31,11 +32,10 @@ function asignarMaestro() {
 }
 
 function agregarMateria() {
-    let url = "/vista/formularios/agregarMateria.jsp";
+    let url = "/vista/formularios/agregarMateria.jsp?roleAdmin=" + roleAdmin;
     
     negarBotones();
     
-    // Abre una nueva ventana con el formulario de agregar materia
     window.open(url, "_blank", "width=600,height=400,resizable=yes,scrollbars=yes");
 }
 
@@ -49,7 +49,8 @@ function actualizarMateria() {
             "&descripcion=" + encodeURIComponent(materiaSeleccionada.descripcion) +
             "&dia=" + encodeURIComponent(materiaSeleccionada.dia) +
             "&hora_comienzo=" + encodeURIComponent(materiaSeleccionada.hora_comienzo) +
-            "&hora_fin=" + encodeURIComponent(materiaSeleccionada.hora_fin);
+            "&hora_fin=" + encodeURIComponent(materiaSeleccionada.hora_fin) + 
+            "&roleAdmin=" + encodeURIComponent(roleAdmin);
 
         negarBotones();
 

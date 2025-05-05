@@ -8,6 +8,12 @@
         response.sendRedirect("/index.jsp");
         return;
     }
+    
+    if (!usuario.getRol().equals("administrador")) {
+        session.removeAttribute("usuarii");
+        response.sendRedirect("/index.jsp");
+    }
+    
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
 %>
@@ -17,6 +23,10 @@
     }
     List<Materia> materias = (List<Materia>) request.getAttribute("materias");
 %>
+
+<script>
+    let roleAdmin = "<%= usuario.getRol() %>";
+</script>
 
 <!DOCTYPE html>
 <html lang="es">

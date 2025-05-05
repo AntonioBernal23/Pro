@@ -4,9 +4,11 @@
     String mensaje = (String) session.getAttribute("mensaje");
     if (mensaje != null) {
 %>
+
 <script>
     alert('<%= mensaje %>');
 </script>
+
 <%
     session.removeAttribute("mensaje");
     }
@@ -15,6 +17,11 @@
     if (usuario == null) {
         response.sendRedirect("/index.jsp");
         return;
+    }
+
+    if (!usuario.getRol().equals("administrador")) {
+        session.removeAttribute("usuarii");
+        response.sendRedirect("/index.jsp");
     }
 
     String nombre = usuario.getNombre();
