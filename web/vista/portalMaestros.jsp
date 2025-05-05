@@ -67,7 +67,7 @@
             <h3>Agregar Tarea</h3>
             <input type="text" name="nombreTarea" placeholder="Nombre de la tarea" required>
             <input type="date" name="fechaEntrega" required>
-            <textarea name="descripcion" placeholder="Descripción de la tarea" required></textarea>
+            
             <button type="submit" class="boton naranja">Guardar Tarea</button>
         </form>
 
@@ -76,7 +76,7 @@
             <h3>Modificar Tarea</h3>
             <input type="text" name="nombreTarea" placeholder="Nuevo nombre de la tarea" required>
             <input type="date" name="nuevaFechaEntrega" required>
-            <textarea name="nuevaDescripcion" placeholder="Nueva descripción" required></textarea>
+            
             <button type="submit" class="boton naranja">Modificar</button>
         </form>
 
