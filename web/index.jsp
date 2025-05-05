@@ -41,7 +41,7 @@
             </button>
 
             <p style="text-align: center; margin-top: 15px;">
-                ¿No tienes cuenta? <a href="vista/registro.jsp?from=index" style="color: #1abc9c;">Crea una aquí.</a>
+                ¿No tienes cuenta? <a href="vista/registro.jsp" style="color: #1abc9c;">Crea una aquí.</a>
             </p>
         </form>
     </div>
