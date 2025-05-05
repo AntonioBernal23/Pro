@@ -54,22 +54,22 @@ input::placeholder {
 
 .submit {
     border: 2px solid white;
-    border-radius: 10px;
-    height: 40px; /* Aumenta la altura para que el ícono sea visible */
+    border-radius: 8px;
+    height: 30px; /* Más pequeño que antes */
     background-color: transparent;
     color: white;
-    display: flex; /* Alinea el contenido de forma horizontal */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    padding: 0 15px; /* Agrega un poco de espacio interno para que no esté pegado al borde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px; /* Menos espacio interno */
+    font-size: 14px; /* Tamaño de texto más pequeño */
     transition: transform 0.3s ease, cursor 0.3s ease;
 }
 
 .submit i {
-    font-size: 20px; /* Ajusta el tamaño del ícono */
-    margin-right: 8px; /* Espacio entre el ícono y el texto, si lo hay */
+    font-size: 16px; /* Ícono más pequeño */
+    margin-right: 6px;
 }
-
 .submit:hover {
     transform: scale(1.05); /* Efecto de hover para agrandar el botón */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
